@@ -1,0 +1,54 @@
+{
+  "changedFilesIos": [
+    "plugins\\cordova-plugin-whitelist\\NOTICE",
+    "plugins\\cordova-plugin-whitelist\\src\\android\\WhitelistPlugin.java",
+    "www\\css\\index.css",
+    "www\\js\\index.js",
+    "plugins\\cordova-plugin-whitelist\\whitelist.js",
+    "plugins\\fetch.json",
+    "config.xml",
+    "plugins\\cordova-plugin-whitelist\\plugin.xml",
+    "www\\index.html",
+    "plugins\\cordova-plugin-whitelist\\package.json",
+    "plugins\\cordova-plugin-whitelist\\CONTRIBUTING.md",
+    "taco.json",
+    "hooks\\README.md",
+    "plugins\\cordova-plugin-whitelist\\LICENSE",
+    "plugins\\cordova-plugin-whitelist\\src\\ios\\CDVNavigationWhitelistPlugin.h",
+    "www\\img\\logo.png",
+    "plugins\\cordova-plugin-whitelist\\RELEASENOTES.md",
+    "plugins\\cordova-plugin-whitelist\\src\\ios\\CDVNavigationWhitelistPlugin.m",
+    "plugins\\cordova-plugin-whitelist\\README.md"
+  ],
+  "deletedFilesIos": [
+    "npm-debug.log"
+  ],
+  "addedPluginsIos": [],
+  "deletedPluginsIos": [],
+  "changedFiles": [
+    "plugins\\cordova-plugin-whitelist\\NOTICE",
+    "plugins\\cordova-plugin-whitelist\\src\\android\\WhitelistPlugin.java",
+    "www\\css\\index.css",
+    "www\\js\\index.js",
+    "plugins\\cordova-plugin-whitelist\\whitelist.js",
+    "plugins\\fetch.json",
+    "config.xml",
+    "plugins\\cordova-plugin-whitelist\\plugin.xml",
+    "www\\index.html",
+    "plugins\\cordova-plugin-whitelist\\package.json",
+    "plugins\\cordova-plugin-whitelist\\CONTRIBUTING.md",
+    "taco.json",
+    "hooks\\README.md",
+    "plugins\\cordova-plugin-whitelist\\LICENSE",
+    "plugins\\cordova-plugin-whitelist\\src\\ios\\CDVNavigationWhitelistPlugin.h",
+    "www\\img\\logo.png",
+    "plugins\\cordova-plugin-whitelist\\RELEASENOTES.md",
+    "plugins\\cordova-plugin-whitelist\\src\\ios\\CDVNavigationWhitelistPlugin.m",
+    "plugins\\cordova-plugin-whitelist\\README.md"
+  ],
+  "deletedFiles": [
+    "npm-debug.log"
+  ],
+  "addedPlugins": [],
+  "deletedPlugins": []
+}

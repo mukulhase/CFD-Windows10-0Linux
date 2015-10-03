@@ -37,7 +37,7 @@
     </head>
     <body>
         
-        <div data-role="page" id="pageone">
+        <div data-role="page" id="pageone" class="nav">
             <div data-role="panel" id="myPanel">
                 <h2>Options</h2>
                 <p>Login<br />settings<br />other shit</p>
@@ -47,12 +47,12 @@
                 <h1>Welcome</h1>
             </div>
 
-            <div data-role="main" class="ui-content">
-                <a href="#pagetwo" data-transition="pop"><div>#Testing</div></a>
+            <div data-role="main" class="ui-content" >
+                <a href="#"><div id="hash" >#Testing</div></a><br>
             </div>
         </div> 
 
-        <div data-role="page" id="pagetwo">
+        <div data-role="page" id="pagetwo" class="nav">
             <div data-role="header">
                 <h1>Info</h1>
             </div>
@@ -66,10 +66,12 @@
         -->
 
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+
         <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="bower_components/jquery-mobile-bower/js/jquery.mobile-1.4.5.min.js"></script>
         <link href="bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/index.js"></script>
+
 
     </body>
 </html>

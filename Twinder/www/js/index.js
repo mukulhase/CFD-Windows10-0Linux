@@ -47,5 +47,26 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+$( document ).on( "pagecreate", "#pageone", function() {
+    //alert("shweg");
+    $(document).on("swipeleft","#pageone",function(){
+        $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo", {
+            transition: "slide",
+            reverse: false
 
+        });
+    });
+
+});
+$( document ).on( "pagecreate", "#pagetwo", function() {
+    //alert("shweg");
+    $(document).on("swiperight","#pagetwo",function(){
+        $(":mobile-pagecontainer").pagecontainer("change", "#pageone", {
+            transition: "slide",
+            reverse: true
+
+        });
+    });
+
+});
 app.initialize();

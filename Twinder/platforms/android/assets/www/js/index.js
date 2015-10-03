@@ -47,5 +47,16 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+$( document ).one( "pagecreate", ".nav", function() {
+    //alert("shweg");
+    $(document).on("swipeleft",".ui-panel-wrapper",function(){
+        $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo", {
+            transition: "slide",
+            reverse: false
+
+        });
+    });
+
+});
 
 app.initialize();

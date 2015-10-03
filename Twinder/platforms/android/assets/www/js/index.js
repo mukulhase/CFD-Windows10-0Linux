@@ -69,4 +69,21 @@ $( document ).on( "pagecreate", "#pagetwo", function() {
     });
 
 });
+
+trends = ['#Nigga', '#Noob', '#Alahamora', '#WhatWasThat', '#R1GoBack']
+
+var i = 0
+
+$(document).on("pagecreate", "#pageone", function () {
+    //alert("shweg");
+    $(document).on("swiperight", "#pageone", function () {
+        i += 1;
+        if (i > trends.length) {
+            i = 0;
+        }
+        $("#hash").text(trends[i]);
+    });
+
+});
+
 app.initialize();

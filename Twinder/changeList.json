@@ -6,6 +6,7 @@
     "www\\js\\index.js",
     "plugins\\cordova-plugin-whitelist\\whitelist.js",
     "plugins\\fetch.json",
+    "config.xml",
     "plugins\\cordova-plugin-whitelist\\plugin.xml",
     "www\\index.html",
     "plugins\\cordova-plugin-whitelist\\package.json",
@@ -17,15 +18,14 @@
     "www\\img\\logo.png",
     "plugins\\cordova-plugin-whitelist\\RELEASENOTES.md",
     "plugins\\cordova-plugin-whitelist\\src\\ios\\CDVNavigationWhitelistPlugin.m",
-    "plugins\\cordova-plugin-whitelist\\README.md",
-    "config.xml"
+    "plugins\\cordova-plugin-whitelist\\README.md"
   ],
-  "deletedFilesIos": [
-    "npm-debug.log"
-  ],
+  "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
-  "changedFiles": [],
+  "changedFiles": [
+    "www\\js\\index.js"
+  ],
   "deletedFiles": [],
   "addedPlugins": [],
   "deletedPlugins": []

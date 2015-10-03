@@ -81,7 +81,10 @@ $(document).on("pagecreate", "#pageone", function () {
         if (i > trends.length) {
             i = 0;
         }
+        //$("#hash").animate({ textIndent: '100vw' }, "fast");
+        $("#hash").css('text-indent', '-60vw');
         $("#hash").text(trends[i]);
+        $("#hash").animate({textIndent: '0vw'})
     });
 
 });

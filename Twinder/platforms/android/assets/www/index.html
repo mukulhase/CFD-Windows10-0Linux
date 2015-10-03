@@ -36,16 +36,35 @@
         <title>Hello World</title>
     </head>
     <body>
-    <div data-role="page" id="index" class="type-interior" data-add-back-btn="true">
-
-        <div data-role="header" class="jqm-header"><h1>Welcome</h1></div>
-
-        <div class="ui-content">
-            <div>
-                #testing.
+        
+        <div data-role="page" id="pageone">
+            <div data-role="panel" id="myPanel">
+                <h2>Options</h2>
+                <p>Login<br />settings<br />other shit</p>
+            </div> 
+            <div data-role="header">
+                <a href="#myPanel" class="ui-btn ui-corner-all ui-shadow ui-icon-grid ui-btn-icon-left ui-btn-icon-notext"></a>
+                <h1>Welcome</h1>
             </div>
-        </div>
-    </div>
+
+            <div data-role="main" class="ui-content">
+                <a href="#pagetwo" data-transition="pop"><div>#Testing</div></a>
+            </div>
+        </div> 
+
+        <div data-role="page" id="pagetwo">
+            <div data-role="header">
+                <h1>Info</h1>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <a href="#pageone" data-transition="pop" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-rel="back">Back</a>
+            </div>
+        </div> 
+        <!--
+        <p>Hello World!</p>
+        -->
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>

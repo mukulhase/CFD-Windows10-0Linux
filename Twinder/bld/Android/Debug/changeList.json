@@ -23,7 +23,11 @@
   "deletedFilesIos": [],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
-  "changedFiles": [],
+  "changedFiles": [
+    "www\\css\\index.css",
+    "www\\index.html",
+    "www\\js\\index.js"
+  ],
   "deletedFiles": [],
   "addedPlugins": [],
   "deletedPlugins": []

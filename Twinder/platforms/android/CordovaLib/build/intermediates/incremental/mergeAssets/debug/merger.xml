@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/mukulhase/Documents/Windows10-0Linux/Twinder/platforms/android/CordovaLib/assets"/></dataSet><dataSet config="debug"><source path="/Users/mukulhase/Documents/Windows10-0Linux/Twinder/platforms/android/CordovaLib/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\Rishith Reddy\Documents\GitHub\Windows10-0Linux\Twinder\platforms\android\CordovaLib\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Rishith Reddy\Documents\GitHub\Windows10-0Linux\Twinder\platforms\android\CordovaLib\src\debug\assets"/></dataSet></merger>

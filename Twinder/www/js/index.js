@@ -118,10 +118,11 @@ function tweetsurl(hashtag){
 
 function loadTweets(hashtag,element){
     $(element).slideUp();
+    $("element").append('<p class="loader"> <span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Searching For Tweets... </p>');
     $.getJSON(tweetsurl(hashtag),function(data) {
         console.log(data);
         var i;
-        var prev='<ul id="tweetsview" data-role="listview" data-inset="true"> <li>';
+        var prev='<ul id="tweetsview" data-role="listview" data-inset="true">';
         for(i=0; i<data.tweets.length; i++){
             prev+="<li><p>";
             prev+=data.tweets[i].text;
@@ -130,6 +131,7 @@ function loadTweets(hashtag,element){
         prev+="</ul>";
         element.innerHTML=prev;
         $(element).trigger("create");
+        $(".loader").slideUp();
         $(element).slideDown();
     });
 }

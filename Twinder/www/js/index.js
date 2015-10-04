@@ -146,7 +146,7 @@ function loadTweets(hashtag,element,count){
             prev += data.tweets[i].text;
             prev += "</p><br>";
         }
-        element.innerHTML=prev + `<a href="https://twitter.com/intent/tweet?button_hashtag="`+hashtag+` class="twitter-hashtag-button" data-related="neelrao">Tweet #`+hashtag+`</a>`;
+        element.innerHTML=prev + `<a href="https://twitter.com/intent/tweet?button_hashtag=`+hashtag.substring(1, hashtag.length)+`" class="twitter-hashtag-button" data-related="neelrao">Tweet `+hashtag+`</a>`;
         $(element).trigger("create");
         $(".loadtwit").slideUp();
         $(".loadtwit").remove();

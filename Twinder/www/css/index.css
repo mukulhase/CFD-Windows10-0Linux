@@ -142,7 +142,7 @@ h1 {
 
 .blob {
     border-radius: 50%;
-    background-color: @twitter;
+    background-color: white;
     display: block;
     float: left;
     margin: 5px 2px;

@@ -72,10 +72,9 @@ $( document ).on( "pagecreate", "#pagetwo", function() {
         $(":mobile-pagecontainer").pagecontainer("change", "#pageone", {
             transition: "slide",
             reverse: true
-
         });
     });
-
+    loadTweets(trends[hn],document.getElementById("tweetdisp"),5);
 });
 
 var localcity="Hyderabad";
@@ -116,7 +115,7 @@ function tweetsurl(hashtag,count){
     return "http://mukulhase.com/twitterproxy/meh/hashtag.php?tag="+result+"&number="+count;
 }
 
-function loadTweets(hashtag,element){
+function loadTweets(hashtag,element,count){
     $(element).slideUp();
     $(element).after(' <div class="loadtwit loading">\
         <span class="loadtwit text">Loading</span>\
@@ -124,7 +123,7 @@ function loadTweets(hashtag,element){
         <span class="loadtwit blob2 blob"></span>\
         <span class="loadtwit blob3 blob"></span>\
         </div>');
-    $.getJSON(tweetsurl(hashtag,2),function(data) {
+    $.getJSON(tweetsurl(hashtag,count),function(data) {
         console.log(data);
         var i;
         var prev='<ul id="tweetsview" data-role="listview" data-inset="true">';
@@ -155,7 +154,7 @@ function loadTrends(){
 function animatePage(){
     var hash= $("#hash");
     var tweetdisp= document.getElementById("tweets");
-    loadTweets(trends[hn],tweetdisp);
+    loadTweets(trends[hn],tweetdisp,1);
     hash.css('text-indent', '-60vw');
     hash.text(trends[hn]);
     hash.animate({textIndent: '0vw'});

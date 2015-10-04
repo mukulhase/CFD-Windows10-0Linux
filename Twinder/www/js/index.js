@@ -89,6 +89,9 @@ function processArray(array){
         if(array[i].indexOf('#')!=-1){
             array2[j]=array[i];
             j++;
+        }else if(array[i].indexOf("'"==-1)) {
+            array2[j]="#" + array[i];
+            j++;
         }else{
             var temp = array[i].split("'");
             var k;
@@ -109,19 +112,23 @@ function trendsurl(city,count){
     return "http://mukulhase.com/twitterproxy/meh/user.php?user=Trends"+city+"&number="+count;
 }
 function tweetsurl(hashtag){
-    return "http://mukulhase.com/twitterproxy/meh/hashtag.php?tag="+hashtag
+    var result = hashtag.substring(1, hashtag.length);
+    return "http://mukulhase.com/twitterproxy/meh/hashtag.php?tag="+result;
 }
 
 function loadTweets(hashtag,element){
     $.getJSON(tweetsurl(hashtag),function(data) {
-        var i;var prev='<ul data-role="listview" data-inset="true"> <li>';
+        console.log(data);
+        var i;
+        var prev='<ul id="tweetsview" data-role="listview" data-inset="true"> <li>';
         for(i=0; i<data.tweets.length; i++){
-            prev+="<li>";
-            prev+=data.tweets[i];
-            prev+="</li>";
+            prev+="<li><p>";
+            prev+=data.tweets[i].text;
+            prev+="</p></li>";
         }
         prev+="</ul>";
         element.innerHTML=prev;
+        $(element).trigger("create");
     });
 }
 
@@ -130,13 +137,14 @@ function loadTrends(){
         console.log(data);
         $.mobile.loading('hide');
         trends=processArray(data.tweets);
-        
+
         animatePage();
     });
 }
 
 function animatePage(){
     var hash= $("#hash");
+    loadTweets(trends[hn],document.getElementById("tweets"));
     hash.css('text-indent', '-60vw');
     hash.text(trends[hn]);
     hash.animate({textIndent: '0vw'});

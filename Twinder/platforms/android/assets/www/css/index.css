@@ -186,6 +186,9 @@ h1 {
     white-space: normal;
 }
 /*hhhmmmm*/
+.ui-content {
+    text-transform: none !important;
+}
 blockquote {
     background: #3c3c3c;
     border-left: 10px solid #ccc;

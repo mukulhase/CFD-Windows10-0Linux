@@ -48,6 +48,7 @@ var app = {
     }
 };
 $( document ).on( "pagecreate", "#pageone", function() {
+
     //alert("shweg");
     $(document).on("swipeleft","#pageone",function(){
         $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo", {
@@ -70,21 +71,54 @@ $( document ).on( "pagecreate", "#pagetwo", function() {
 
 });
 
-trends = ['#Nigga', '#Noob', '#Alahamora', '#WhatWasThat', '#R1GoBack']
+trends = ['#Nigga', '#Noob', '#Alahomora', '#WhatWasThat', '#R1GoBack']
 
-var i = 0
-
+var hn = 0;
+function processArray(array){
+    var array2=[];
+    var j=0;
+    for(var i=0; i< array.length; i++){
+        if(array[i].indexOf('#')!=-1){
+            array2[j]=array[i];
+            j++;
+        }else{
+            var temp = array[i].split("'");
+            var k;
+            for(k=1;k<temp.length;k+=2) {
+                array2[j] = "#"+temp[k];
+                console.log(temp[k]);
+                j++;
+            }
+        }
+    }
+    return array2;
+}
 $(document).on("pagecreate", "#pageone", function () {
-    //alert("shweg");
+    var x=setInterval(function(){
+        $.mobile.loading( "show", {
+            text: "Loading Tweets",
+            textVisible: true,
+            theme: "a",
+        });},500);
+    var testurl="http://mukulhase.com/twitterproxy/meh/user.php?user=TrendsHyderabad&number=10"
+    $.getJSON(testurl,function(data){
+        console.log(data);
+        $.mobile.loading("hide");
+        trends=processArray(data.tweets);
+        $("#hash").css('text-indent', '-60vw');
+        $("#hash").text(trends[hn]);
+        $("#hash").animate({textIndent: '0vw'});
+        clearInterval(x);
+    });
     $(document).on("swiperight", "#pageone", function () {
-        i += 1;
-        if (i > trends.length) {
-            i = 0;
+        hn += 1;
+        if (hn > trends.length) {
+            hn = 0;
         }
         //$("#hash").animate({ textIndent: '100vw' }, "fast");
         $("#hash").css('text-indent', '-60vw');
-        $("#hash").text(trends[i]);
-        $("#hash").animate({textIndent: '0vw'})
+        $("#hash").text(trends[hn]);
+        $("#hash").animate({textIndent: '0vw'});
     });
 
 });

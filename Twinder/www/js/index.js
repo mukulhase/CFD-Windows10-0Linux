@@ -48,6 +48,7 @@ var app = {
     }
 };
 $( document ).on( "pagecreate", "#pageone", function() {
+
     //alert("shweg");
     $(document).on("swipeleft","#pageone",function(){
         $(":mobile-pagecontainer").pagecontainer("change", "#pagetwo", {
@@ -55,6 +56,13 @@ $( document ).on( "pagecreate", "#pageone", function() {
             reverse: false
 
         });
+    });
+    $(document).on("swiperight", "#pageone", function () {
+        hn += 1;
+        if (hn >= trends.length) {
+            hn = 0;
+        }
+        animatePage();
     });
 
 });
@@ -70,23 +78,88 @@ $( document ).on( "pagecreate", "#pagetwo", function() {
 
 });
 
-trends = ['#Nigga', '#Noob', '#Alahamora', '#WhatWasThat', '#R1GoBack']
+var localcity="Hyderabad";
+var count=10;
+var hn = 0;
 
-var i = 0
-
-$(document).on("pagecreate", "#pageone", function () {
-    //alert("shweg");
-    $(document).on("swiperight", "#pageone", function () {
-        i += 1;
-        if (i > trends.length) {
-            i = 0;
+function processArray(array){
+    var array2=[];
+    var j=0;
+    for(var i=0; i< array.length; i++){
+        if(array[i].indexOf('#')!=-1){
+            array2[j]=array[i];
+            j++;
+        }else if(array[i].indexOf("'"==-1)) {
+            array2[j]="#" + array[i];
+            j++;
+        }else{
+            var temp = array[i].split("'");
+            var k;
+            for(k=1;k<temp.length;k+=2) {
+                array2[j] = "#"+temp[k];
+                console.log(temp[k]);
+                j++;
+            }
         }
-        //$("#hash").animate({ textIndent: '100vw' }, "fast");
-        $("#hash").css('text-indent', '-60vw');
-        $("#hash").text(trends[i]);
-        $("#hash").animate({textIndent: '0vw'})
-    });
+    }
+    return array2;
+}
+function locationchange(location){
+    document.getElementById("currentlocation").innerText=location;
+    localcity=location;
+}
+function trendsurl(city,count){
+    return "http://mukulhase.com/twitterproxy/meh/user.php?user=Trends"+city+"&number="+count;
+}
+function tweetsurl(hashtag){
+    var result = hashtag.substring(1, hashtag.length);
+    return "http://mukulhase.com/twitterproxy/meh/hashtag.php?tag="+result;
+}
 
+function loadTweets(hashtag,element){
+    $.getJSON(tweetsurl(hashtag),function(data) {
+        console.log(data);
+        var i;
+        var prev='<ul id="tweetsview" data-role="listview" data-inset="true"> <li>';
+        for(i=0; i<data.tweets.length; i++){
+            prev+="<li><p>";
+            prev+=data.tweets[i].text;
+            prev+="</p></li>";
+        }
+        prev+="</ul>";
+        element.innerHTML=prev;
+        $(element).trigger("create");
+    });
+}
+
+function loadTrends(){
+    $.getJSON(trendsurl(localcity,count),function(data){
+        console.log(data);
+        $.mobile.loading('hide');
+        trends=processArray(data.tweets);
+
+        animatePage();
+    });
+}
+
+function animatePage(){
+    var hash= $("#hash");
+    loadTweets(trends[hn],document.getElementById("tweets"));
+    hash.css('text-indent', '-60vw');
+    hash.text(trends[hn]);
+    hash.animate({textIndent: '0vw'});
+}
+$(document).one("pagecreate", "#pageone", function () {
+    var interval = setInterval(function(){
+        $.mobile.loading( "show", {
+            text: "Loading Tweets",
+            textVisible: true,
+            theme: "a"
+        });
+        clearInterval(interval);
+        console.log("hmm");
+    },1);
+    loadTrends();
 });
 
 app.initialize();

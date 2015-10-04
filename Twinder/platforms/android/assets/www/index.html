@@ -27,8 +27,8 @@
             * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        --><!--Z
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -48,7 +48,11 @@
             </div>
 
             <div data-role="main" class="ui-content" >
-                <h1 id="hash" style="margin-top: 20vh; font-family:HelveticaNeue-Light; font-size: xx-large;">#Testing</h1>
+                <h1 id="hash" style="margin-top: 20vh; font-family:HelveticaNeue-Light; font-size: xx-large;"></h1>
+                <ul data-role="listview" data-inset="true">
+                    <li><span font-size="xx-large">"</span>I love when yo mama #tested me<span font-size="xx-large">"</span>- <i> Yo Papa</i></li>
+                    <li><span font-size="xx-large">"</span>#testing my dildo<span font-size="xx-large">"</span>- <i> Yo Uncle</i></li>
+                </ul>
             </div>
         </div> 
 

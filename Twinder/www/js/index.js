@@ -74,7 +74,11 @@ $( document ).on( "pagecreate", "#pagetwo", function() {
             reverse: true
         });
     });
-    loadTweets(trends[hn],document.getElementById("tweetdisp"),5);
+});
+$( document ).on( "pageshow", "#pagetwo", function() {
+
+    loadTweets(trends[hn], document.getElementById("tweetdisp"), 5);
+
 });
 
 var localcity="Hyderabad";

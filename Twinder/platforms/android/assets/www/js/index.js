@@ -74,6 +74,11 @@ $( document ).on( "pagecreate", "#pagetwo", function() {
             reverse: true
         });
     });
+
+    $(".tweetmore").click(function () {
+        var temp = $(this).text();
+        $("#info").text(temp);
+    });
 });
 $( document ).on( "pageshow", "#pagetwo", function() {
 
@@ -132,11 +137,33 @@ function loadTweets(hashtag,element,count){
         var i;
         var prev='<ul id="tweetsview" data-role="listview" data-inset="true">';
         for(i=0; i<data.tweets.length; i++){
-            prev+="<li><p>";
+            prev += '<li><a href="#myPopup" data-rel="popup"><p class="tweetmore">';
             prev+=data.tweets[i].text;
-            prev+="</p></li>";
+            prev+="</p></a></li>";
         }
         prev+="</ul>";
+        element.innerHTML=prev;
+        $(element).trigger("create");
+        $(".loadtwit").slideUp();
+        $(".loadtwit").remove();
+        $(element).slideDown();
+    });
+}
+
+function loadTweetOne(hashtag,element){
+    $(element).slideUp();
+    $(element).after(' <div class="loadtwit loading">\
+        <span class="loadtwit text">Loading</span>\
+        <span class="loadtwit blob1 blob"></span>\
+        <span class="loadtwit blob2 blob"></span>\
+        <span class="loadtwit blob3 blob"></span>\
+        </div>');
+    $.getJSON(tweetsurl(hashtag,1),function(data) {
+        console.log(data);
+        var prev = "";
+        prev+='<p id="theone">';
+        prev+=data.tweets[0].text;
+        prev+="</p>";
         element.innerHTML=prev;
         $(element).trigger("create");
         $(".loadtwit").slideUp();
@@ -158,7 +185,7 @@ function loadTrends(){
 function animatePage(){
     var hash= $("#hash");
     var tweetdisp= document.getElementById("tweets");
-    loadTweets(trends[hn],tweetdisp,1);
+    loadTweetOne(trends[hn],tweetdisp);
     hash.css('text-indent', '-60vw');
     hash.text(trends[hn]);
     hash.animate({textIndent: '0vw'});

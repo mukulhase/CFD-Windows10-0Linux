@@ -144,7 +144,7 @@ function loadTweets(hashtag,element,count){
         for (i = 0; i < data.tweets.length; i++) {
             prev += '<blockquote> <p class="tweetmore">';
             prev += data.tweets[i].text;
-            prev += "</p><footer><cite title=\"Source Title\">"+data.tweets[i].user+"</cite></footer></blockquote>";
+            prev += "</p style=\"color:#00CED1;\"><footer><cite title=\"Source Title\">" + data.tweets[i].user + "</cite></footer></blockquote>";
         }
         prev+="";
         element.innerHTML=prev + `<a href="https://twitter.com/intent/tweet?button_hashtag=`+hashtag.substring(1, hashtag.length)+`" class="twitter-hashtag-button" data-related="neelrao">Tweet `+hashtag+`</a>`;
@@ -166,9 +166,9 @@ function loadTweetOne(hashtag,element){
     $.getJSON(tweetsurl(hashtag,1),function(data) {
         console.log(data);
         var prev = "";
-        prev+='<p id="theone">';
+        prev += '<blockquote> <p>';
         prev+=data.tweets[0].text;
-        prev+="</p>";
+        prev += "</p style=\"color:#00CED1;\"><footer><cite title=\"Source Title\">" + data.tweets[0].user + "</cite></footer></blockquote>";
         element.innerHTML=prev;
         $(element).trigger("create");
         $(".loadtwit").slideUp();

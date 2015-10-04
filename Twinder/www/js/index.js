@@ -140,13 +140,12 @@ function loadTweets(hashtag,element,count){
     $.getJSON(tweetsurl(hashtag,count),function(data) {
         console.log(data);
         var i;
-        var prev='<ul id="tweetsview" data-role="listview" data-inset="true">';
-        for(i=0; i<data.tweets.length; i++){
-            prev += '<li><a href="#myPopup" data-rel="popup"><p class="tweetmore">';
-            prev+=data.tweets[i].text;
-            prev+="</p></a></li>";
+        var prev='';
+        for (i = 0; i < data.tweets.length; i++) {
+            prev += '<p class="tweetmore">';
+            prev += data.tweets[i].text;
+            prev += "</p><br>";
         }
-        prev+="</ul>";
         element.innerHTML=prev;
         $(element).trigger("create");
         $(".loadtwit").slideUp();

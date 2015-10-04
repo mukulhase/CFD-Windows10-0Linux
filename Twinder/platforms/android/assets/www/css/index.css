@@ -129,8 +129,8 @@ h1 {
 }
 
 .loading {
+    text-align: center;
     margin: auto;
-    width: 100px;
 .clearfix;
 }
 
@@ -180,4 +180,8 @@ h1 {
     zoom: 1;
     &:before { content: ''; display: block; }
     &:after { content: ''; display: table; clear: both;}
+}
+
+.ui-page .ui-content .ui-listview .ui-li-desc {
+    white-space: normal;
 }

@@ -89,7 +89,7 @@ function processArray(array){
         if(array[i].indexOf('#')!=-1){
             array2[j]=array[i];
             j++;
-        }else if(array[i].indexOf("'"==-1)) {
+        }else if(array[i].indexOf("'")==-1) {
             array2[j]="#" + array[i];
             j++;
         }else{
@@ -117,6 +117,7 @@ function tweetsurl(hashtag){
 }
 
 function loadTweets(hashtag,element){
+    $(element).slideUp();
     $.getJSON(tweetsurl(hashtag),function(data) {
         console.log(data);
         var i;
@@ -129,6 +130,7 @@ function loadTweets(hashtag,element){
         prev+="</ul>";
         element.innerHTML=prev;
         $(element).trigger("create");
+        $(element).slideDown();
     });
 }
 
@@ -144,7 +146,8 @@ function loadTrends(){
 
 function animatePage(){
     var hash= $("#hash");
-    loadTweets(trends[hn],document.getElementById("tweets"));
+    var tweetdisp= document.getElementById("tweets");
+    loadTweets(trends[hn],tweetdisp);
     hash.css('text-indent', '-60vw');
     hash.text(trends[hn]);
     hash.animate({textIndent: '0vw'});

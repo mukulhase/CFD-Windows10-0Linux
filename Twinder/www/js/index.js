@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var locationList = ["SthAfrica", "JoBurg", "Mumbai", "DC", "Liverpool", "London", "Chennai", "CapeTown", "Lagos", "Karachi", "Hyderabad", "UK", "Sydney", "Bangalore", "MPLS", "Boston", "Ireland", "New York", "Miami", "Dublin", "Melbourne", "Detroit", "Philly", "Chicago", "Seattle", "Vancouver", "Montreal",  "Toronto", "PGH", "NewDelhi", "Glasgow", "Nashville", "SanDiego", "Santiago", "NOLA", "Cleveland", "Phoenix", "Nigeria", "Australia"];
 var app = {
     // Application Constructor
     initialize: function() {
@@ -191,5 +192,6 @@ function populateLocations() {
 
     $(element).trigger("create");
 }
+
 
 app.initialize();

@@ -88,6 +88,7 @@ $( document ).on( "pageshow", "#pagetwo", function() {
 });
 
 var localcity="Hyderabad";
+document.getElementById("currentlocation").innerText="Hyderabad";
 var count=10;
 var hn = 0;
 
@@ -96,8 +97,10 @@ function processArray(array){
     var j=0;
     for(var i=0; i< array.length; i++){
         if(array[i].indexOf('#')!=-1){
-            array2[j]=array[i];
-            j++;
+            if(array[i].length>1){
+                array2[j]=array[i];
+                j++;
+            }
         }else if(array[i].indexOf("'")==-1) {
             array2[j]="#" + array[i];
             j++;
@@ -116,6 +119,7 @@ function processArray(array){
 function locationchange(location){
     document.getElementById("currentlocation").innerText=location;
     localcity=location;
+    loadTrends();
 }
 function trendsurl(city,count){
     return "http://mukulhase.com/twitterproxy/meh/user.php?user=Trends"+city+"&number="+count;
@@ -136,14 +140,13 @@ function loadTweets(hashtag,element,count){
     $.getJSON(tweetsurl(hashtag,count),function(data) {
         console.log(data);
         var i;
-        var prev='<ul id="tweetsview" data-role="listview" data-inset="true">';
-        for(i=0; i<data.tweets.length; i++){
-            prev += '<li><a href="#myPopup" data-rel="popup"><p class="tweetmore">';
-            prev+=data.tweets[i].text;
-            prev+="</p></a></li>";
+        var prev='';
+        for (i = 0; i < data.tweets.length; i++) {
+            prev += '<p class="tweetmore">';
+            prev += data.tweets[i].text;
+            prev += "</p><br>";
         }
-        prev+="</ul>";
-        element.innerHTML=prev;
+        element.innerHTML=prev + `<a href="https://twitter.com/intent/tweet?button_hashtag="`+hashtag+` class="twitter-hashtag-button" data-related="neelrao">Tweet #`+hashtag+`</a>`;
         $(element).trigger("create");
         $(".loadtwit").slideUp();
         $(".loadtwit").remove();
@@ -191,7 +194,9 @@ function animatePage(){
     hash.text(trends[hn]);
     hash.animate({textIndent: '0vw'});
 }
+
 $(document).one("pagecreate", "#pageone", function () {
+    populateLocations();
     var interval = setInterval(function(){
         $.mobile.loading( "show", {
             text: "Loading Tweets",
@@ -205,20 +210,20 @@ $(document).one("pagecreate", "#pageone", function () {
 });
 
 !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
-var locationList = ["SthAfrica", "JoBurg", "Mumbai", "DC", "Liverpool", "London", "Chennai", "CapeTown", "Lagos", "Karachi", "Hyderabad", "UK", "Sydney", "Bangalore", "MPLS", "Boston", "Ireland", "New York", "Miami", "Dublin", "Melbourne", "Detroit", "Philly", "Chicago", "Seattle", "Vancouver", "Montreal", "Toronto", "PGH", "NewDelhi", "Glasgow", "Nashville", "SanDiego", "Santiago", "NOLA", "Cleveland", "Phoenix", "Nigeria", "Australia"];
+
+
 function populateLocations() {
     var element = document.getElementById("locations");
     var prev = '<ul id="locationsView" data-role="listview" data-inset="true" data-autodividers="true" data-filter="true">';
     for (i = 0; i < locationList.length; i++) {
-        prev += "<li>";
+        prev += "<li><a href=\"\" onclick=\"locationchange('"+locationList[i]+"')\" >";
         prev += locationList[i];
-        prev += "</li>";
+        prev += "</a></li>";
     }
     prev += "</ul>";
     element.innerHTML = prev;
 
     $(element).trigger("create");
 }
-
 
 app.initialize();

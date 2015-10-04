@@ -142,10 +142,11 @@ function loadTweets(hashtag,element,count){
         var i;
         var prev='';
         for (i = 0; i < data.tweets.length; i++) {
-            prev += '<p class="tweetmore">';
+            prev += '<blockquote> <p class="tweetmore">';
             prev += data.tweets[i].text;
-            prev += "</p><br>";
+            prev += "</p><footer><cite title=\"Source Title\">"+data.tweets[i].user+"</cite></footer></blockquote>";
         }
+        prev+="";
         element.innerHTML=prev + `<a href="https://twitter.com/intent/tweet?button_hashtag=`+hashtag.substring(1, hashtag.length)+`" class="twitter-hashtag-button" data-related="neelrao">Tweet `+hashtag+`</a>`;
         $(element).trigger("create");
         $(".loadtwit").slideUp();

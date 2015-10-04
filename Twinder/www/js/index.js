@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var locationList = ["SthAfrica", "JoBurg", "Mumbai", "DC", "Liverpool", "London", "Chennai", "CapeTown", "Lagos", "Karachi", "Hyderabad", "UK", "Sydney", "Bangalore", "MPLS", "Boston", "Ireland", "New York", "Miami", "Dublin", "Melbourne", "Detroit", "Philly", "Chicago", "Seattle", "Vancouver", "Montreal",  "Toronto", "PGH", "NewDelhi", "Glasgow", "Nashville", "SanDiego", "Santiago", "NOLA", "Cleveland", "Phoenix", "Nigeria", "Australia"];
 var app = {
     // Application Constructor
     initialize: function() {
@@ -177,5 +178,6 @@ $(document).one("pagecreate", "#pageone", function () {
 });
 
 !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
+
 
 app.initialize();

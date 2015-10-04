@@ -72,9 +72,12 @@ $( document ).on( "pagecreate", "#pagetwo", function() {
         $(":mobile-pagecontainer").pagecontainer("change", "#pageone", {
             transition: "slide",
             reverse: true
-
         });
     });
+});
+$( document ).on( "pageshow", "#pagetwo", function() {
+
+    loadTweets(trends[hn], document.getElementById("tweetdisp"), 5);
 
 });
 
@@ -111,17 +114,23 @@ function locationchange(location){
 function trendsurl(city,count){
     return "http://mukulhase.com/twitterproxy/meh/user.php?user=Trends"+city+"&number="+count;
 }
-function tweetsurl(hashtag){
+function tweetsurl(hashtag,count){
     var result = hashtag.substring(1, hashtag.length);
-    return "http://mukulhase.com/twitterproxy/meh/hashtag.php?tag="+result;
+    return "http://mukulhase.com/twitterproxy/meh/hashtag.php?tag="+result+"&number="+count;
 }
 
-function loadTweets(hashtag,element){
+function loadTweets(hashtag,element,count){
     $(element).slideUp();
-    $.getJSON(tweetsurl(hashtag),function(data) {
+    $(element).after(' <div class="loadtwit loading">\
+        <span class="loadtwit text">Loading</span>\
+        <span class="loadtwit blob1 blob"></span>\
+        <span class="loadtwit blob2 blob"></span>\
+        <span class="loadtwit blob3 blob"></span>\
+        </div>');
+    $.getJSON(tweetsurl(hashtag,count),function(data) {
         console.log(data);
         var i;
-        var prev='<ul id="tweetsview" data-role="listview" data-inset="true"> <li>';
+        var prev='<ul id="tweetsview" data-role="listview" data-inset="true">';
         for(i=0; i<data.tweets.length; i++){
             prev+="<li><p>";
             prev+=data.tweets[i].text;
@@ -130,6 +139,8 @@ function loadTweets(hashtag,element){
         prev+="</ul>";
         element.innerHTML=prev;
         $(element).trigger("create");
+        $(".loadtwit").slideUp();
+        $(".loadtwit").remove();
         $(element).slideDown();
     });
 }
@@ -147,7 +158,7 @@ function loadTrends(){
 function animatePage(){
     var hash= $("#hash");
     var tweetdisp= document.getElementById("tweets");
-    loadTweets(trends[hn],tweetdisp);
+    loadTweets(trends[hn],tweetdisp,1);
     hash.css('text-indent', '-60vw');
     hash.text(trends[hn]);
     hash.animate({textIndent: '0vw'});
@@ -164,5 +175,7 @@ $(document).one("pagecreate", "#pageone", function () {
     },1);
     loadTrends();
 });
+
+!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
 
 app.initialize();

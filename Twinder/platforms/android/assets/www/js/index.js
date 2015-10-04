@@ -146,9 +146,6 @@ function loadTweets(hashtag,element,count){
             prev += data.tweets[i].text;
             prev += "</p style=\"color:#00CED1;\"><footer><cite title=\"Source Title\">" + data.tweets[i].user + "</cite></footer></blockquote>";
         }
-<<<<<<< HEAD
-        prev+="";
-=======
         console.log(data.tweets);
         var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
         var regex = new RegExp(expression);
@@ -161,7 +158,6 @@ function loadTweets(hashtag,element,count){
                 }
             }
         }
->>>>>>> origin/master
         element.innerHTML=prev + `<a href="https://twitter.com/intent/tweet?button_hashtag=`+hashtag.substring(1, hashtag.length)+`" class="twitter-hashtag-button">Tweet `+hashtag+`</a>`;
         $(element).trigger("create");
         $(".loadtwit").slideUp();

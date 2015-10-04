@@ -111,15 +111,21 @@ function locationchange(location){
 function trendsurl(city,count){
     return "http://mukulhase.com/twitterproxy/meh/user.php?user=Trends"+city+"&number="+count;
 }
-function tweetsurl(hashtag){
+function tweetsurl(hashtag,count){
     var result = hashtag.substring(1, hashtag.length);
-    return "http://mukulhase.com/twitterproxy/meh/hashtag.php?tag="+result;
+    return "http://mukulhase.com/twitterproxy/meh/hashtag.php?tag="+result+"&number="+count;
 }
 
 function loadTweets(hashtag,element){
     $(element).slideUp();
-    $("element").append('<p class="loader"> <span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Searching For Tweets... </p>');
-    $.getJSON(tweetsurl(hashtag),function(data) {
+    $(element).after('<div class="twitter-bird-animation"></div>\
+        <div class="loadtwit loading">\
+        <span class="loadtwit text">Loading</span>\
+        <span class="loadtwit blob1 blob"></span>\
+        <span class="loadtwit blob2 blob"></span>\
+        <span class="loadtwit blob3 blob"></span>\
+        </div>');
+    $.getJSON(tweetsurl(hashtag,2),function(data) {
         console.log(data);
         var i;
         var prev='<ul id="tweetsview" data-role="listview" data-inset="true">';
@@ -131,7 +137,8 @@ function loadTweets(hashtag,element){
         prev+="</ul>";
         element.innerHTML=prev;
         $(element).trigger("create");
-        $(".loader").slideUp();
+        $(".loadtwit").slideUp();
+        $(".loadtwit").remove();
         $(element).slideDown();
     });
 }

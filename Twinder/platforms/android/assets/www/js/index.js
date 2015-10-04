@@ -82,7 +82,7 @@ $( document ).on( "pagecreate", "#pagetwo", function() {
     });
 });
 $( document ).on( "pageshow", "#pagetwo", function() {
-
+    document.getElementById("tagHere").innerText = trends[hn];
     loadTweets(trends[hn], document.getElementById("tweetdisp"), 5);
 
 });

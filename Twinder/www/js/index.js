@@ -142,9 +142,9 @@ function loadTweets(hashtag,element,count){
         var i;
         var prev='';
         for (i = 0; i < data.tweets.length; i++) {
-            prev += '<p class="tweetmore">';
+            prev += '<blockquote> <p class="tweetmore">';
             prev += data.tweets[i].text;
-            prev += "</p><br>";
+            prev += "</p style=\"color:#00CED1;\"><footer><cite title=\"Source Title\">" + data.tweets[i].user + "</cite></footer></blockquote>";
         }
         console.log(data.tweets);
         var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
@@ -158,7 +158,7 @@ function loadTweets(hashtag,element,count){
                 }
             }
         }
-        element.innerHTML=prev + `<a href="https://twitter.com/intent/tweet?button_hashtag=`+hashtag.substring(1, hashtag.length)+`" class="twitter-hashtag-button" data-related="neelrao">Tweet `+hashtag+`</a>`;
+        element.innerHTML=prev + `<a href="https://twitter.com/intent/tweet?button_hashtag=`+hashtag.substring(1, hashtag.length)+`" class="twitter-hashtag-button">Tweet `+hashtag+`</a>`;
         $(element).trigger("create");
         $(".loadtwit").slideUp();
         $(".loadtwit").remove();
@@ -177,9 +177,9 @@ function loadTweetOne(hashtag,element){
     $.getJSON(tweetsurl(hashtag,1),function(data) {
         console.log(data);
         var prev = "";
-        prev+='<p id="theone">';
+        prev += '<blockquote> <p>';
         prev+=data.tweets[0].text;
-        prev+="</p>";
+        prev += "</p style=\"color:#00CED1;\"><footer><cite title=\"Source Title\">" + data.tweets[0].user + "</cite></footer></blockquote>";
         element.innerHTML=prev;
         $(element).trigger("create");
         $(".loadtwit").slideUp();

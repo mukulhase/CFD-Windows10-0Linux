@@ -118,12 +118,11 @@ function tweetsurl(hashtag,count){
 
 function loadTweets(hashtag,element){
     $(element).slideUp();
-    $(element).after('<div class="twitter-bird-animation"></div>\
-        <div class="loading">\
-        <span class="text">Loading</span>\
-        <span class="blob1 blob"></span>\
-        <span class="blob2 blob"></span>\
-        <span class="blob3 blob"></span>\
+    $(element).after(' <div class="loadtwit loading">\
+        <span class="loadtwit text">Loading</span>\
+        <span class="loadtwit blob1 blob"></span>\
+        <span class="loadtwit blob2 blob"></span>\
+        <span class="loadtwit blob3 blob"></span>\
         </div>');
     $.getJSON(tweetsurl(hashtag,2),function(data) {
         console.log(data);
@@ -137,7 +136,8 @@ function loadTweets(hashtag,element){
         prev+="</ul>";
         element.innerHTML=prev;
         $(element).trigger("create");
-        $(".loader").slideUp();
+        $(".loadtwit").slideUp();
+        $(".loadtwit").remove();
         $(element).slideDown();
     });
 }

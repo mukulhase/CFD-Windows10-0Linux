@@ -118,8 +118,7 @@ function tweetsurl(hashtag,count){
 
 function loadTweets(hashtag,element){
     $(element).slideUp();
-    $(element).after('<div class="twitter-bird-animation"></div>\
-        <div class="loadtwit loading">\
+    $(element).after(' <div class="loadtwit loading">\
         <span class="loadtwit text">Loading</span>\
         <span class="loadtwit blob1 blob"></span>\
         <span class="loadtwit blob2 blob"></span>\
